@@ -36,7 +36,7 @@ export default [
     },
   },
   {
-    files: ['postcss.config.js', 'gatsby-node.js', 'gatsby-config.js'],
+    files: ['postcss.config.js', 'gatsby-node.js', 'gatsby-config.ts'],
     languageOptions: {
       sourceType: 'commonjs',
       globals: {

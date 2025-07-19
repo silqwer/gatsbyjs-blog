@@ -11,7 +11,6 @@ const config: GatsbyConfig = {
   graphqlTypegen: true,
   plugins: [
     'gatsby-plugin-postcss',
-    'gatsby-plugin-mdx',
     'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-source-filesystem',
@@ -22,12 +21,28 @@ const config: GatsbyConfig = {
       __key: 'pages',
     },
     {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/posts`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-alias-imports',
       options: {
         rootFolder: './',
         aliases: {
           '@': './src',
         },
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-mdx',
+      options: {
+        extensions: ['.mdx', '.md'],
+        gatsbyRemarkPlugins: [],
+        remarkPlugins: [],
+        rehypePlugins: [],
       },
     },
   ],

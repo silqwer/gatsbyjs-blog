@@ -9,3 +9,37 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     },
   });
 };
+
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
+
+  const result = await graphql(`
+    query {
+      allMdx {
+        nodes {
+          id
+          frontmatter {
+            slug
+          }
+        }
+      }
+    }
+  `);
+
+  if (result.errors) {
+    throw new Error('GraphQL query error');
+  }
+
+  const postTemplate = path.resolve('./src/templates/BlogPost.tsx');
+
+  result.data.allMdx.nodes.forEach(node => {
+    const slug = node.frontmatter?.slug || 'default-slug';
+    createPage({
+      path: `/blog/${slug}`,
+      component: postTemplate,
+      context: {
+        id: node.id,
+      },
+    });
+  });
+};
