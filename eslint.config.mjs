@@ -13,6 +13,19 @@ export default [
       ecmaVersion: 'latest',
       sourceType: 'module',
       parser: typescriptParser,
+      globals: {
+        process: 'readonly',
+        __dirname: 'readonly',
+        __filename: 'readonly',
+        Buffer: 'readonly',
+        global: 'readonly',
+        console: 'readonly',
+        window: 'readonly',
+        document: 'readonly',
+        navigator: 'readonly',
+        localStorage: 'readonly',
+        sessionStorage: 'readonly',
+      },
       parserOptions: {
         ecmaFeatures: {
           jsx: true,
